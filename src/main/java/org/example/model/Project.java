@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 @Builder
 public class Project {
-    private final String name;
+    private String name;
 }
