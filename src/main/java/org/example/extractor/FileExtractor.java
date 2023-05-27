@@ -29,8 +29,6 @@ public class FileExtractor {
 //        System.out.println(getPersonFromFile("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls"));
         PersonRepository pr = getPeopleFromFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
         System.out.println(pr);
-
-
     }
 
     public static PersonRepository getPeopleFromFolder(String folderName) {
