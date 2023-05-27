@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class FileExtractor {
 
     public static void main(String[] args) throws IOException {
         listFilesFromAFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
+        System.out.println(arrayCreator("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls"));
 //        extractor("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
 //        extractor2("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
     }
@@ -83,6 +85,38 @@ public class FileExtractor {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static List arrayCreator(String path){
+        List listOfArrays = new ArrayList();
+        try (InputStream inp = new FileInputStream(path)) {
+            HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
+            ExcelExtractor extractor = new ExcelExtractor(wb);
+            extractor.setFormulasNotResults(true);
+            extractor.setIncludeSheetNames(false);
+            for (Sheet sheet : wb ) {
+                System.out.println(sheet.getSheetName());
+                for (Row row : sheet) {
+                    List listOfCells = new ArrayList<>();
+                    listOfCells.add(sheet.getSheetName());
+                    for (Cell cell : row) {
+                        System.out.println(cell);
+
+                        listOfCells.add(cell);
+                    }
+                    listOfArrays.add(listOfCells);
+
+                }
+
+            }
+
+//            String text = extractor.getText();
+//            System.out.println(text);
+            wb.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return listOfArrays;
     }
 
 //    public static void extractor2(String path){
