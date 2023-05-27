@@ -5,10 +5,8 @@ import org.example.model.Project;
 import org.example.model.Task;
 import org.example.reports.Report_1;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.example.FileExtractor.listFilesFromAFolder;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
@@ -66,10 +64,40 @@ public class Main {
                 .tasks(List.of(t1))
                 .build();
 
-        var l1 = List.of(p1, p2);
+        List<Person> personsList = List.of(p1, p2);
 
         Report_1 report1 = new Report_1();
-        Report_1.countingHoursPerProject(l1);
+        Report_1.countingHoursPerProject(personsList);
 
+        //System.out.println(personsList.get(0));
+     //   System.out.println(personsList.get(0).getTasks());
+        List<Task> taskPerPerson = getTasksFromPerson(personsList);
+        taskPerPerson.forEach(System.out::println);
+        System.out.println(taskPerPerson.getClass());
+       List<Task> filteredTasks = getTasksWithCertainProject(taskPerPerson, "Projekt1");
+        for (Task filteredTask : filteredTasks) {
+            System.out.println("przefiltrowany taks " + filteredTask);
+        }
+
+   /*     personsList.stream()
+                .map(person -> person.getTasks())
+                .filter(tasksList -> tasksList
+                        .stream()
+                        .filter(task -> task.getProjects()
+                                .forEach(project -> project.getName().equals("Projekt1"));
+
+                .getTasks().stream().forEach(task -> System.out.println(task.getTimeAmount()));*/
+    }
+
+    static List<Task> getTasksFromPerson(List<Person> personsList){
+        return personsList.stream()
+                .flatMap(p -> p.getTasks().stream())
+                .toList();
+    }
+
+    static List<Task> getTasksWithCertainProject(List<Task> personsList, String projectName){
+        return (List<Task>)personsList.stream()
+                .flatMap(task -> task.getProjects().stream()
+                        .filter(project -> project.getName().equals(projectName)));
     }
 }
