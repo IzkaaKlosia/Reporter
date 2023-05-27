@@ -26,6 +26,8 @@ public class FileExtractor {
     public static void main(String[] args) throws IOException {
         listFilesFromAFolder(excelsPath.getPath());
         System.out.println(arrayCreator("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls"));
+//        extractor("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
+//        extractor2("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
 
     }
 
