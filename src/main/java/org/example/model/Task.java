@@ -8,9 +8,9 @@ import java.util.List;
 @Data
 @Builder
 public class Task {
-    private final String name;
-    private final LocalDate date;
-    private final Double timeAmount;
+    private String name;
+    private String date;
+    private String timeAmount;
     private List<Project> projects;
 
     public void addProject(Project project){

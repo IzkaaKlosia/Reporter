@@ -8,9 +8,11 @@ import java.util.List;
 @Builder
 public class Person {
     private List<Task> tasks;
-    private final String name;
+    private String name;
 
     public void addTask(Task task){
         this.tasks.add(task);
-    }
+        }
+
+
 }

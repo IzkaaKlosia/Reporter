@@ -9,4 +9,10 @@ import java.util.List;
 @Builder
 public class PersonRepository {
     private List<Person> people;
+
+    public void addPerson(Person person){
+        people.add(person);
+    }
+
 }
+
