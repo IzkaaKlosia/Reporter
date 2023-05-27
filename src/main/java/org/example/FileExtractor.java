@@ -6,28 +6,29 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FileExtractor {
+
+    static URL excelsPath = FileExtractor.class
+            .getClassLoader().getResource("2012");
 
     public FileExtractor(){
     }
 
     public static void main(String[] args) throws IOException {
-        listFilesFromAFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
+        listFilesFromAFolder(excelsPath.getPath());
         System.out.println(arrayCreator("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls"));
 //        extractor("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
 //        extractor2("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
+
     }
 
     public static void listFilesFromAFolder(String folderName) {
