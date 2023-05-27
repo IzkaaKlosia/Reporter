@@ -24,7 +24,8 @@ public class FileExtractor {
 
     public static void main(String[] args) throws IOException {
         listFilesFromAFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
-        extractor("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
+//        extractor("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
+//        extractor2("/home/students/j/o/jonowak/reporter/reporter-dane/2012/01/Kowalski_Jan.xls");
 
 
     }
@@ -39,6 +40,7 @@ public class FileExtractor {
                     for (File f2:listOfFiles2){
                         if (f2.getName().endsWith("xls")){
                             System.out.println(f2.getPath());
+                            extractor(f2.getPath());
                         }
 
                        }
@@ -57,6 +59,35 @@ public class FileExtractor {
             extractor.setIncludeSheetNames(false);
             String text = extractor.getText();
             System.out.println(text);
+            wb.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void extractor2(String path){
+        try (InputStream inp = new FileInputStream(path)) {
+            HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
+            ExcelExtractor extractor = new ExcelExtractor(wb);
+            extractor.setFormulasNotResults(true);
+            extractor.setIncludeSheetNames(false);
+            Sheet sheet = wb.getSheetAt(0);
+            Map<Integer, String> data = new HashMap<>();
+            int i = 0;
+            for (Row row : sheet) {
+                for (Cell cell : row) {
+                    switch (cell.getCellType()) {
+
+                        case NUMERIC: break;
+                        case BOOLEAN: break;
+                        case FORMULA: break;
+                        case STRING:
+                            data.put(i,cell.getRichStringCellValue().getString());
+                    }
+                }
+                i++;
+            }
+            System.out.println(data);
             wb.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
