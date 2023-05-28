@@ -20,7 +20,8 @@ public class PrinterToExcel {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Report");
         File currDir = new File(".");
-        String fileLocation = "src\\main\\reports\\report1.xlsx";
+        String fileLocation = "src/main/reports/report2222.xlsx";
+
 
 
         sheet.setColumnWidth(0, 6000);
