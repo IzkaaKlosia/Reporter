@@ -3,10 +3,10 @@ import org.apache.commons.cli.*;
 import org.example.model.Person;
 import org.example.model.Project;
 import org.example.model.Task;
-import org.example.reports.Report_1;
+import org.example.reports.Report1Generator;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
@@ -21,6 +21,8 @@ public class Main {
         CommandLine cmd = parser.parse(options, args);
         if(cmd.hasOption("Report_1")) {
             System.out.println("Report_1");
+            //Template for CLI input
+         //   Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
 //            listFilesFromAFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
         }
 
@@ -33,71 +35,41 @@ public class Main {
         }
 
 
-
-        var pr1 = Project.builder()
+        //Test data
+        Project pr1 = Project.builder()
                 .name("Projekt1")
                 .build();
 
-        var pr2 = Project.builder()
+        Project pr2 = Project.builder()
                 .name("Projekt2")
                 .build();
 
-        var t1 = Task.builder()
+        Task t1 = Task.builder()
                 .name("bleble")
                 .timeAmount(5.0)
-                .projects(List.of(pr1))
+                .project(pr1)
                 .build();
 
-        var t2 = Task.builder()
+        Task t2 = Task.builder()
                 .name("XD")
                 .timeAmount(2.0)
-                .projects(List.of(pr1, pr2))
+                .project(pr2)
                 .build();
 
-        var p1 = Person.builder()
+        Person p1 = Person.builder()
                 .name("Kamil Z")
                 .tasks(List.of(t1, t2))
                 .build();
 
-        var p2 = Person.builder()
+        Person p2 = Person.builder()
                 .name("Zbigniew S")
                 .tasks(List.of(t1))
                 .build();
 
         List<Person> personsList = List.of(p1, p2);
 
-        Report_1 report1 = new Report_1();
-        Report_1.countingHoursPerProject(personsList);
-
-        //System.out.println(personsList.get(0));
-     //   System.out.println(personsList.get(0).getTasks());
-        List<Task> taskPerPerson = getTasksFromPerson(personsList);
-        taskPerPerson.forEach(System.out::println);
-        System.out.println(taskPerPerson.getClass());
-       List<Task> filteredTasks = getTasksWithCertainProject(taskPerPerson, "Projekt1");
-        for (Task filteredTask : filteredTasks) {
-            System.out.println("przefiltrowany taks " + filteredTask);
-        }
-
-   /*     personsList.stream()
-                .map(person -> person.getTasks())
-                .filter(tasksList -> tasksList
-                        .stream()
-                        .filter(task -> task.getProjects()
-                                .forEach(project -> project.getName().equals("Projekt1"));
-
-                .getTasks().stream().forEach(task -> System.out.println(task.getTimeAmount()));*/
+        Map<String, Double> report_1 = Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
+        System.out.println(report_1);
     }
 
-    static List<Task> getTasksFromPerson(List<Person> personsList){
-        return personsList.stream()
-                .flatMap(p -> p.getTasks().stream())
-                .toList();
-    }
-
-    static List<Task> getTasksWithCertainProject(List<Task> personsList, String projectName){
-        return (List<Task>)personsList.stream()
-                .flatMap(task -> task.getProjects().stream()
-                        .filter(project -> project.getName().equals(projectName)));
-    }
 }
