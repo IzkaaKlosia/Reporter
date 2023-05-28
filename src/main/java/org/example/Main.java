@@ -58,21 +58,21 @@ public class Main {
         // Person Repository from file
         FileChecker fc = new FileChecker();
         PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012/02");
-        System.out.println("***** RAPORT 1 ***");
-        System.out.println(Report1Generator.generateReport1(personRepositoryFromFile));
-        System.out.println("***** RAPORT 2 ***");
-        System.out.println(Report2Generator.generateReport2(personRepositoryFromFile));
+
+        Report1Generator.generateReport1(personRepositoryFromFile);
+
 
         // Command Line Runner Script
         CommandLine cmd = parser.parse(options, args);
         if(cmd.hasOption("Report_1")) {
             System.out.println("Report_1");
-            Report1Generator.generateReport1(personRepository);
+            new PrinterOnConsole().printReport_1(Report1Generator.generateReport1(personRepositoryFromFile));
         }
 
         if(cmd.hasOption("Report_2")) {
             System.out.println("Report_2");
-            Report2Generator.generateReport2(personRepositoryFromFile);
+            new PrinterOnConsole().printReport_1(Report2Generator.generateReport2(personRepositoryFromFile));
+
         }
 
         if(cmd.hasOption("Report_3")) {
