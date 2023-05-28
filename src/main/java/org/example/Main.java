@@ -19,42 +19,6 @@ public class Main {
         options.addOption("Report_2", false, "display current time");
         options.addOption("Report_3", false, "display current time");
 
-        //Test data
-        Project pr1 = Project.builder()
-                .name("Projekt1")
-                .build();
-
-        Project pr2 = Project.builder()
-                .name("Projekt2")
-                .build();
-
-        Task t1 = Task.builder()
-                .name("bleble")
-                .timeAmount(5.0)
-                .project(pr1)
-                .build();
-
-        Task t2 = Task.builder()
-                .name("XD")
-                .timeAmount(2.0)
-                .project(pr2)
-                .build();
-
-        Person p1 = Person.builder()
-                .name("Kamil Z")
-                .tasks(List.of(t1, t2))
-                .build();
-
-        Person p2 = Person.builder()
-                .name("Zbigniew S")
-                .tasks(List.of(t1))
-                .build();
-
-        List<Person> personsList = List.of(p1, p2);
-        PersonRepository personRepository = PersonRepository.builder()
-                .people(personsList)
-                .build();
-
         // Person Repository from file
         FileChecker fc = new FileChecker();
         PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012/02");
