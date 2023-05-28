@@ -3,6 +3,7 @@ import org.apache.commons.cli.*;
 import org.example.model.Person;
 import org.example.model.Project;
 import org.example.model.Task;
+import org.example.printer.PrinterOnConsole;
 import org.example.reports.Report1Generator;
 
 import java.util.List;
@@ -70,6 +71,8 @@ public class Main {
 
         Map<String, Double> report_1 = Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
         System.out.println(report_1);
+        PrinterOnConsole poc = new PrinterOnConsole();
+        poc.printReport_1(report_1);
     }
 
 }
