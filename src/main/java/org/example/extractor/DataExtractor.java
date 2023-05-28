@@ -1,13 +1,11 @@
 package org.example.extractor;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.poi.hssf.extractor.ExcelExtractor;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.example.model.Person;
 import org.example.model.Project;
 import org.example.model.Task;
@@ -16,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class DataExtractor {
@@ -63,10 +60,10 @@ public class DataExtractor {
     }
 
     public static String reworkTheName(String path) {
-        int a = path.lastIndexOf('\\') + 1;
+        int a = path.lastIndexOf("/") + 1;
         int len = path.length();
         String nameOfEmployee = path.substring(a, len - 4);
-        return nameOfEmployee;
+        return nameOfEmployee.replaceAll("_", " ");
     }
 
     public static LocalDate extractLocalDate(Cell c, String path) {
