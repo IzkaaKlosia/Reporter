@@ -5,15 +5,15 @@ import java.util.HashMap;
 
 public class CodeRunnerTester {
     public static void main(String[] args) throws IOException {
-        //PrinterToExcel pr = new PrinterToExcel();
+//        PrinterToExcel pr = new PrinterToExcel();
+
         HashMap hm = new HashMap<String, Double>();
-        hm.put("Project1", 2);
-        hm.put("Project2", 3);
+        hm.put("Project1", 3);
+        hm.put("Project2", 4);
+        hm.put("Project3",3);
+ //       pr.createAnExcelFromHashMap(hm);
 
-        for (Object key:hm.keySet()){
-            System.out.println(key);
-            System.out.println(hm.get(key));
-        }
-
+        PrinterOnConsole poc= new PrinterOnConsole();
+        poc.printReport_1(hm);
     }
 }

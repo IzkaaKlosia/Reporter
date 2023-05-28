@@ -20,7 +20,9 @@ public class PrinterToExcel {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Report");
         File currDir = new File(".");
-        String fileLocation = "/home/students/j/o/jonowak/result.xlsx";
+        String fileLocation = "src/main/reports/report2222.xlsx";
+
+
 
         sheet.setColumnWidth(0, 6000);
         sheet.setColumnWidth(1, 4000);
@@ -33,19 +35,16 @@ public class PrinterToExcel {
         headerCell = header.createCell(1);
         headerCell.setCellValue("Hours Total");
 
-        int len = data.size();
-        for (int i = 0; i<len;i++){
+        int counter = 1;
 
+        for (Object key:data.keySet()){
+            Row rowI = sheet.createRow(counter);
+            Cell cellI = rowI.createCell(0);
+            Cell cellII = rowI.createCell(1);
+            cellI.setCellValue(key.toString());
+            cellII.setCellValue(data.get(key).toString());
+            counter++;
         }
-
-
-//        Row rowI = sheet.createRow(i);
-//        Cell cellI = rowI.createCell(0);
-//        Cell cellII = rowI.createCell(1);
-//        cellI.setCellValue(i);
-//        cellII.setCellValue(line);
-//        i = i +1;
-//        System.out.println(line);
 
         FileOutputStream outputStream = new FileOutputStream(fileLocation);
         workbook.write(outputStream);
