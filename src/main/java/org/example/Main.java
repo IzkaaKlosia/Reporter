@@ -15,13 +15,19 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         Options options = new Options();
         CommandLineParser parser = new DefaultParser();
+
         options.addOption("Report_1", false, "display current time");
         options.addOption("Report_2", false, "display current time");
         options.addOption("Report_3", false, "display current time");
+        options.addOption("path", true, "display current time");
+
+        CommandLine line = parser.parse(options, args);
+        String pathFromUser = line.getOptionValue("path");
 
         // Person Repository from file
         FileChecker fc = new FileChecker();
-        PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012/02");
+        PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString(pathFromUser == null ? "src/main/resources/2012" : pathFromUser);
+
 
         Report1Generator.generateReport1(personRepositoryFromFile);
 
@@ -35,7 +41,7 @@ public class Main {
 
         if(cmd.hasOption("Report_2")) {
             System.out.println("Report_2");
-            new PrinterOnConsole().printReport_1(Report2Generator.generateReport2(personRepositoryFromFile));
+            new PrinterOnConsole().printReport_2(Report2Generator.generateReport2(personRepositoryFromFile));
 
         }
 
