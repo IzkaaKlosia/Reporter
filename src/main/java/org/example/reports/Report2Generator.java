@@ -18,7 +18,4 @@ public class Report2Generator {
                        v -> getTimeAmountFromTasks(v.getTasks())
                ));
     }
-
-    // dla wersji 2b Osoba/ projekt / godzina
-    // zrobic mape Map<Osoba, Map<NazwaProjektu, Liczba godzin>>
 }

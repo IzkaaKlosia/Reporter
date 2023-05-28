@@ -54,9 +54,6 @@ public class Main {
                 .people(personsList)
                 .build();
 
-       /* Map<String, Double> report_1 = Report1Generator.generateReport1(personRepository);
-        System.out.println(report_1);*/
-
         // Person Repository from file
         FileChecker fc = new FileChecker();
         PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012/02");
