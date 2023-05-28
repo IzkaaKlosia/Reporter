@@ -2,6 +2,7 @@
 The following script assumes different options:
   1. "-Report_1" caluclates the time spent by all employees on each project available. 
   2. "-Report_2" indicates the collective amount of times spent on all the projects by each employee.
+  3. "-Report_3" displays all of the tasks and the amount of time spent on them by emloyees.
 
 CLI command to run previously generated .jar file:
 java -jar test_passing_system_parameters.jar -Report_1 
