@@ -57,7 +57,7 @@ public class Main {
 
         // Person Repository from file
         FileChecker fc = new FileChecker();
-        PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012/02");
+        PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012");
 
         Report1Generator.generateReport1(personRepositoryFromFile);
 

@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class PrinterOnConsole {
     public void printReport_1(Map report1){
-        var a = "Project Name " + '\t' + "Time";
+        var a = "Project Name " + '\t' + '\t' + "Time";
         System.out.println(a);
 
-        System.out.println("---------------------");
+        System.out.println("------------------------------------");
 
         for (Object key:report1.keySet()){
             System.out.print(key + " " + '\t'+'\t');
@@ -21,10 +21,10 @@ public class PrinterOnConsole {
     }
     public void printReport_2(Map report2) {
 
-        var a = "Person Name " + '\t' + "Time";
+        var a = "Person Name " + '\t' + '\t' + "Time";
         System.out.println(a);
 
-        System.out.println("---------------------");
+        System.out.println("------------------------------------");
 
         for (Object key : report2.keySet()) {
             System.out.print(key + " " + '\t' + '\t');
