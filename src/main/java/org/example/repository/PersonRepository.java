@@ -14,5 +14,15 @@ public class PersonRepository {
         people.add(person);
     }
 
+    public Person getPersonByName(String name) {
+        for (Person person : people) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        return null;
+        }
 }
+
+
 

@@ -8,10 +8,11 @@ import org.example.reports.Report_1;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.FileExtractor.listFilesFromAFolder;
+
 
 public class Main {
     public static void main(String[] args) throws ParseException {
+
         System.out.println("Hello world!");
 
         Options options = new Options();
