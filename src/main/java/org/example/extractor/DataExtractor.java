@@ -38,7 +38,7 @@ public class DataExtractor {
                 project.setName(sheet.getSheetName());
                 for (Row row : sheet) {
                     if (row.getRowNum() != 0 && checkForEmptyRows(row) == false) {
-                        Task task = Task.builder().projects(new ArrayList<>()).build();
+                        Task task = Task.builder().build();
                         for (Cell cell : row) {
                             if (cell.getColumnIndex() == 0) {
                                 task.setDate(extractLocalDate(cell, path));
@@ -50,7 +50,7 @@ public class DataExtractor {
                                 task.setTimeAmount(extractHours(cell, path));
                             }
                         }
-                        task.addProject(project);
+                        task.setProject(project);
                         person.addTask(task);
                     }
                 }

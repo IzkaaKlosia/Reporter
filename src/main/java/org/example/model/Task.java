@@ -11,9 +11,10 @@ public class Task {
     private String name;
     private LocalDate date;
     private Double timeAmount;
-    private List<Project> projects;
+    //private List<Project> projects;
+    private Project project;
 
-    public void addProject(Project project){
-        this.projects.add(project);
+//    //public void addProject(Project project){
+//        this.projects.add(project);
     }
-}
+
