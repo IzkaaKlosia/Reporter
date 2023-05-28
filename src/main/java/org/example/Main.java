@@ -1,39 +1,22 @@
 package org.example;
 import org.apache.commons.cli.*;
+import org.example.extractor.FileChecker;
 import org.example.model.Person;
 import org.example.model.Project;
 import org.example.model.Task;
 import org.example.reports.Report1Generator;
+import org.example.reports.Report2Generator;
+import org.example.repository.PersonRepository;
 
 import java.util.List;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
-        System.out.println("Hello world!");
-
         Options options = new Options();
         CommandLineParser parser = new DefaultParser();
         options.addOption("Report_1", false, "display current time");
         options.addOption("Report_2", false, "display current time");
         options.addOption("Report_3", false, "display current time");
-
-        CommandLine cmd = parser.parse(options, args);
-        if(cmd.hasOption("Report_1")) {
-            System.out.println("Report_1");
-            //Template for CLI input
-         //   Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
-//            listFilesFromAFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
-        }
-
-        if(cmd.hasOption("Report_2")) {
-            System.out.println("Report_2");
-        }
-
-        if(cmd.hasOption("Report_3")) {
-            System.out.println("Report_3");
-        }
-
 
         //Test data
         Project pr1 = Project.builder()
@@ -67,9 +50,36 @@ public class Main {
                 .build();
 
         List<Person> personsList = List.of(p1, p2);
+        PersonRepository personRepository = PersonRepository.builder()
+                .people(personsList)
+                .build();
 
-        Map<String, Double> report_1 = Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
-        System.out.println(report_1);
+       /* Map<String, Double> report_1 = Report1Generator.generateReport1(personRepository);
+        System.out.println(report_1);*/
+
+        // Person Repository from file
+        FileChecker fc = new FileChecker();
+        PersonRepository personRepositoryFromFile = fc.getPersonRepositoryFromString("src/main/resources/2012/02");
+        System.out.println("***** RAPORT 1 ***");
+        System.out.println(Report1Generator.generateReport1(personRepositoryFromFile));
+        System.out.println("***** RAPORT 2 ***");
+        System.out.println(Report2Generator.generateReport2(personRepositoryFromFile));
+
+        // Command Line Runner Script
+        CommandLine cmd = parser.parse(options, args);
+        if(cmd.hasOption("Report_1")) {
+            System.out.println("Report_1");
+            Report1Generator.generateReport1(personRepository);
+        }
+
+        if(cmd.hasOption("Report_2")) {
+            System.out.println("Report_2");
+            Report2Generator.generateReport2(personRepositoryFromFile);
+        }
+
+        if(cmd.hasOption("Report_3")) {
+            System.out.println("Report_3");
+        }
     }
 
 }
