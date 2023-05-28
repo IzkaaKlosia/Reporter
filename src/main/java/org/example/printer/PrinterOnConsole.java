@@ -31,6 +31,18 @@ public class PrinterOnConsole {
             System.out.println(report2.get(key));
         }
     }
+    public void printReport_3(Map report3) {
+
+        var a = "Task Name " + '\t' + "Time";
+        System.out.println(a);
+
+        System.out.println("---------------------");
+
+        for (Object key : report3.keySet()) {
+            System.out.print(key + " " + '\t' + '\t');
+            System.out.println(report3.get(key));
+        }
+    }
 
 
 }

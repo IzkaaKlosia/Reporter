@@ -7,6 +7,7 @@ import org.example.model.Task;
 import org.example.printer.PrinterOnConsole;
 import org.example.reports.Report1Generator;
 import org.example.reports.Report2Generator;
+import org.example.reports.Report3Generator;
 import org.example.repository.PersonRepository;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class Main {
 
         if(cmd.hasOption("Report_3")) {
             System.out.println("Report_3");
+            new PrinterOnConsole().printReport_3(Report3Generator.generateReport3(personRepositoryFromFile));
         }
     }
 
