@@ -78,10 +78,6 @@ public class Main {
         if(cmd.hasOption("Report_3")) {
             System.out.println("Report_3");
         }
-        Map<String, Double> report_1 = Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
-        System.out.println(report_1);
-        PrinterOnConsole poc = new PrinterOnConsole();
-        poc.printReport_1(report_1);
     }
 
 }
