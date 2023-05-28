@@ -7,3 +7,4 @@ In order to create .jar file please follow below steps:
   choose "Main" class in "Main Class" 
   2. Build -> Build artifacts -> Build
   3. Your .jar file will be created in 'out' folder 
+  4. Open your terminal/command window and type "java -jar test_passing_system_parameters -Report_1" or "-Report_2".
