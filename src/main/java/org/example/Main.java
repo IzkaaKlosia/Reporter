@@ -71,7 +71,7 @@ public class Main {
 
         if(cmd.hasOption("Report_2")) {
             System.out.println("Report_2");
-            new PrinterOnConsole().printReport_1(Report2Generator.generateReport2(personRepositoryFromFile));
+            new PrinterOnConsole().printReport_2(Report2Generator.generateReport2(personRepositoryFromFile));
 
         }
 

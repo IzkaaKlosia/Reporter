@@ -19,4 +19,18 @@ public class PrinterOnConsole {
             System.out.println(report1.get(key));
         }
     }
+    public void printReport_2(Map report2) {
+
+        var a = "Person Name " + '\t' + "Time";
+        System.out.println(a);
+
+        System.out.println("---------------------");
+
+        for (Object key : report2.keySet()) {
+            System.out.print(key + " " + '\t' + '\t');
+            System.out.println(report2.get(key));
+        }
+    }
+
+
 }
