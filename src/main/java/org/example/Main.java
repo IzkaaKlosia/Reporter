@@ -3,16 +3,13 @@ import org.apache.commons.cli.*;
 import org.example.model.Person;
 import org.example.model.Project;
 import org.example.model.Task;
-import org.example.reports.Report_1;
+import org.example.reports.Report1Generator;
 
-import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
-
         System.out.println("Hello world!");
 
         Options options = new Options();
@@ -24,6 +21,8 @@ public class Main {
         CommandLine cmd = parser.parse(options, args);
         if(cmd.hasOption("Report_1")) {
             System.out.println("Report_1");
+            //Template for CLI input
+         //   Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
 //            listFilesFromAFolder("/home/students/j/o/jonowak/reporter/reporter-dane/2012");
         }
 
@@ -36,41 +35,41 @@ public class Main {
         }
 
 
-
-        var pr1 = Project.builder()
+        //Test data
+        Project pr1 = Project.builder()
                 .name("Projekt1")
                 .build();
 
-        var pr2 = Project.builder()
+        Project pr2 = Project.builder()
                 .name("Projekt2")
                 .build();
 
-        var t1 = Task.builder()
+        Task t1 = Task.builder()
                 .name("bleble")
                 .timeAmount(5.0)
-                .projects(List.of(pr1))
+                .project(pr1)
                 .build();
 
-        var t2 = Task.builder()
+        Task t2 = Task.builder()
                 .name("XD")
                 .timeAmount(2.0)
-                .projects(List.of(pr1, pr2))
+                .project(pr2)
                 .build();
 
-        var p1 = Person.builder()
+        Person p1 = Person.builder()
                 .name("Kamil Z")
                 .tasks(List.of(t1, t2))
                 .build();
 
-        var p2 = Person.builder()
+        Person p2 = Person.builder()
                 .name("Zbigniew S")
                 .tasks(List.of(t1))
                 .build();
 
-        var l1 = List.of(p1, p2);
+        List<Person> personsList = List.of(p1, p2);
 
-        Report_1 report1 = new Report_1();
-        Report_1.countingHoursPerProject(l1);
-
+        Map<String, Double> report_1 = Report1Generator.generateReport1(personsList, List.of(pr1, pr2));
+        System.out.println(report_1);
     }
+
 }
