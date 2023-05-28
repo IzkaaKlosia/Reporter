@@ -19,7 +19,7 @@ public class FileChecker {
         this.dataExtractor = new DataExtractor();
     }
 
-    public PersonRepository getRepositoryFromString(String firstName) {
+    public PersonRepository getPersonRepositoryFromString(String firstName) {
         PersonRepository baseRepository = PersonRepository.builder().people(new ArrayList<>()).build();
         if (!Files.exists(Path.of(firstName))) {
             System.out.println("This folder does not exist: " + firstName);
